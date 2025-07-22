@@ -4,6 +4,7 @@ class Menu:
         print("Welcome to GS Inima's weather extraction system")
         
     def selectStation(self):
+        choice = -1
         os.system('cls' if os.name == 'nt' else 'clear')
         print("Please select a station from the following list:")
         print("1. Meteo Station Gabriel de Castilla")
@@ -16,6 +17,9 @@ class Menu:
         return choice
     
     def selectDate(self):
+        hour = -1
+        minute = -1
+        second = -1
         print("**DATE SELECTION**")
         print("Please enter the year:")
         year = int(input())
@@ -44,18 +48,23 @@ class Menu:
         return f"{year}-{month:02d}-{day:02d}T{hour:02d}:{minute:02d}:{second:02d}"
     
     def selectAggregate(self):
+        choice = -1
         print("Please select an aggregate type:")
         print("1. Daily")
         print("2. Hourly")
         print("3. Monthly")
         print("4. Yearly")
         while choice not in range(1, 5):
-            choice = input("Enter the number of your choice: ")
+            choice = int(input("Enter the number of your choice: "))
             if choice not in range(1, 5):
                 print("Please introduce a valid option.")
         return choice
     
     def selectData(self):
+        choice = -1
+        speedChoice = -1
+        tempChoice = -1 
+        presChoice = -1
         print("Do you wish to receieve all the data from AEMET?")
         print("0. Yes")
         print("1. No")
