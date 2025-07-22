@@ -1,13 +1,18 @@
+import JSONManager
 class Request:
     def __init__(self):
         self._intialDate = ""
         self._finalDate = ""
-        self._station= 0
+        self._station= ""
         self._aggregation = 0 
         self._speed = True 
         self._temperature = True
         self._pressure = True
-        
+#Request
+    def set_request(self):
+        __APIKEY = JSONManager.readJSON("Key.json")
+        URL = "https://opendata.aemet.es/opendata/api/antartida/datos/fechaini/{initialDate}/fechafin/{finalDate}/estacion/{station}?{APIKEY}"
+        return
 #Getters and Setters 
     def get_initial_date(self):
         return self._intialDate
@@ -44,6 +49,11 @@ class Request:
     
     def set_temperature(self, temperature):
         self._temperature = temperature
+    
+    def set_data(self, temp, pres, speed):
+        self._temperature = temp
+        self._pressure = pres
+        self._speed = speed
     
         
     

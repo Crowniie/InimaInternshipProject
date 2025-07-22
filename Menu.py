@@ -25,27 +25,75 @@ class Menu:
         day = int(input())
         
         print("**TIME SELECTION**")
+        print("Please enter the hour(Use military format):")
         while hour < 0 or hour > 23:
-            print("Please enter the hour(Use military format):")
             hour = int(input())
             if hour <= 9:
                 hour = f"0{hour}"
-                
+        print("Please enter the minute:")      
         while minute < 0 or minute > 59:
-            print("Please enter the minute:")
             minute = int(input())
-            if minute not in range(0, 59):
+            if minute not in range(0, 60):
                 print("Please introduce a valid minute.")
-
+        
+        print("Please enter the second:")
         while second < 0 or second > 59:
-            print("Please enter the second:")
             second = int(input())
-            if second not in range(0, 59):
+            if second not in range(0, 60):
                 print("Please introduce a valid second.")
         return f"{year}-{month:02d}-{day:02d}T{hour:02d}:{minute:02d}:{second:02d}"
+    
+    def selectAggregate(self):
+        print("Please select an aggregate type:")
+        print("1. Daily")
+        print("2. Hourly")
+        print("3. Monthly")
+        print("4. Yearly")
+        while choice not in range(1, 5):
+            choice = input("Enter the number of your choice: ")
+            if choice not in range(1, 5):
+                print("Please introduce a valid option.")
+        return choice
+    
+    def selectData(self):
+        print("Do you wish to receieve all the data from AEMET?")
+        print("0. Yes")
+        print("1. No")
+        while choice not in ['0', '1']:
+            choice = input("Enter the number of your choice: ")
+            if choice not in ['0', '1']:
+                print("Please introduce a valid option.")
+        if choice == '0':
+            return True, True, True
+        else:
+            os.system('cls' if os.name == 'nt' else 'clear')
+            print("Do you wish to recieve speed data?")
+            print("0. Yes")
+            print("1. No")
+            while speedChoice not in ['0', '1']:
+                speedChoice = input("Enter the number of your choice: ")
+                if speedChoice not in ['0', '1']:
+                    print("Please introduce a valid option.")
+            speed = True if speedChoice == '0' else False       
+            os.system('cls' if os.name == 'nt' else 'clear')
             
-
-        
-        
-
-
+            print("Do you wish to recieve temperature data?")
+            print("0. Yes")
+            print("1. No")
+            while tempChoice not in ['0', '1']:
+                tempChoice = input("Enter the number of your choice: ")
+                if tempChoice not in ['0', '1']:
+                    print("Please introduce a valid option.")
+            temperature = True if tempChoice == '0' else False
+            os.system('cls' if os.name == 'nt' else 'clear')
+            
+            print("Do you wish to recieve pressure data?")
+            print("0. Yes")
+            print("1. No")
+            while presChoice not in ['0', '1']:
+                presChoice = input("Enter the number of your choice: ")
+                if presChoice not in ['0', '1']:
+                    print("Please introduce a valid option.")
+            pressure = True if presChoice == '0' else False
+            return temperature, pressure, speed
+            
